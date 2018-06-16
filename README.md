@@ -1,4 +1,5 @@
 # ig-autolikes
+This operates your account and likes the articles of the target users.
 
 ## Usage
 1. Set USERNAME, PASSWORD in main.py to login to your account.
