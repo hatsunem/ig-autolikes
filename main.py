@@ -12,7 +12,7 @@ ACTION_INTERVAL = 10
 ACTION_HOUR = [7, 8, 9, 11, 12, 13, 19, 20, 21, 22]
 
 
-def action():
+def action(operator):
     time = datetime.datetime.now() + datetime.timedelta(hours=TIMEZONE)
     hour = time.hour
 
@@ -25,11 +25,15 @@ def action():
         print("{0}: {1}likes♡".format(time.strftime('%X'), likes))
 
 
-if __name__ == '__main__':
+def main():
     operator = InstaOperator(USERNAME, PASSWORD, TAG)
     operator.login()
-    action()
+    action(operator)
 
     sc = BlockingScheduler(standalone=True, coalesce=True)
     sc.add_job(action, 'interval', minutes=ACTION_INTERVAL)
     sc.start()
+
+
+if __name__ == '__main__':
+    main()
